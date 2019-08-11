@@ -1,22 +1,11 @@
-import { CounterActionTypes } from "./actions";
-import { ITestState } from "./interfaces";
-import { Action } from "redux";
-
+import {ITestState} from "./types";
+import {createReducer} from "typesafe-actions";
+import {incrementAction} from "./actions";
 const initialState: ITestState = {
-  age: 0
+  age: 1
 };
 
-export default function(
-  state: ITestState = initialState,
-  action: Action<string>
-) {
-  switch (action.type) {
-    case CounterActionTypes.INCREMENT:
-      return {
-        ...state,
-        age: state.age + 1
-      };
-    default:
-      return state;
-  }
-}
+const test = createReducer(initialState)
+        .handleAction(incrementAction, (state, action) => ({...state, age: action.payload}))
+
+export default test;

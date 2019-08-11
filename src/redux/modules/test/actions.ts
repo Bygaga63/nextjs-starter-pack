@@ -1,12 +1,5 @@
-import { Action } from 'redux'
+import {createAction} from 'typesafe-actions';
 
-export enum CounterActionTypes {
-  INCREMENT = 'INCREMENT',
-}
+export const incrementAction = createAction('test/INCREMENT', action =>
+    (age: number) => action(age));
 
-export type CounterAction =
-  | Action<CounterActionTypes.INCREMENT>
-
-export const increment: CounterAction = {
-  type: CounterActionTypes.INCREMENT,
-}
